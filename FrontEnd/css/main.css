@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color:#eee;
+}
+
+#corpo {
+    width: 1400px;
+    height: 800px;
+    border: 1px solid #ccc;
+    border-radius:3px;
+    padding-bottom:2px;
+    background-color:#fff;
+}
+
+#painel{
+    padding:3rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:50px;
+    background-color: #dad7d7;
+    font-size: 27px;
+}
+
+#editor {
+    padding: 10px;
+    height:704px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
