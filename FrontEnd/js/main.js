@@ -1,6 +1,3 @@
-const editor = document.querySelector("#editor")
-
-
 document.addEventListener("DOMContentLoaded", function() {
     var editorDiv = document.getElementById("editor");
 
