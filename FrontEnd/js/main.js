@@ -36,3 +36,6 @@
 
 
     // O QUE PRECISARIA SER FEITO NESSE CASO SERIA O BACKEND ARMAZENAR A VERSÃO ATUALIZADA DO TEXTO NO LOCALSTORAGE E O FRONTEND MANDAR A VERSÃO ATUAL PARA O BACKEND FAZER UM MERGE
+
+    //uma possibilidade seria usar o node.js no backend juntamente com a biblioteca socket.io (deve facilitar um pouco)
+    
