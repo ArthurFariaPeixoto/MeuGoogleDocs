@@ -42,14 +42,12 @@ public class TextEditorServer {
     }
 
     private String getCurrentContent() {
-        // Aqui você pode implementar a lógica para obter o conteúdo atual do editor de alguma fonte (por exemplo, banco de dados).
-        // Por simplicidade, usaremos uma variável estática para armazenar o conteúdo atual neste exemplo.
+        // Aqui é onde implementamos a lógica para obter o conteúdo atual do editor de alguma fonte (por exemplo, banco de dados).
         return EditorContentStore.getCurrentContent();
     }
 
     private void updateContent(String content) {
-        // Aqui você pode implementar a lógica para atualizar o conteúdo do editor em alguma fonte (por exemplo, banco de dados).
-        // Por simplicidade, usaremos uma variável estática para armazenar o conteúdo atual neste exemplo.
+        // Aqui é onde implementamos a lógica para atualizar o conteúdo do editor em alguma fonte (por exemplo, banco de dados).
         EditorContentStore.updateContent(content);
     }
 
