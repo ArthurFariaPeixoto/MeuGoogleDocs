@@ -21,18 +21,45 @@
 
 
     // Carregar conteúdo do editor caso haja algo salvo no armazenamento
-    window.onload = function() {
-        const savedContent = localStorage.getItem('editorContent');
-        if (savedContent) {
-            document.getElementById('editor').innerHTML = savedContent;
-        }
-    };
+    // window.onload = function() {
+    //     const savedContent = localStorage.getItem('editorContent');
+    //     if (savedContent) {
+    //         document.getElementById('editor').innerHTML = savedContent;
+    //     }
+    // };
 
     // Salva conteúdo do editor no armazenamento local sempre que houver uma alteração
-    document.getElementById('editor').addEventListener('input', function() {
-        const content = this.innerHTML;
-        localStorage.setItem('editorContent', content);
+    // document.getElementById('editor').addEventListener('input', function() {
+    //     const content = this.innerHTML;
+    //     localStorage.setItem('editorContent', content);
+    // });
+
+    const editor = document.getElementById('editor');
+    const socket = new WebSocket('ws://localhost:8080/editor');
+
+    socket.onopen = () => {
+        console.log('Conexão estabelecida com o servidor WebSocket');
+    };
+
+    socket.onmessage = (event) => {
+        const content = event.data;
+        editor.innerHTML = content;
+        console.log('Conteúdo atualizado:', content);
+    };
+
+    socket.onerror = (error) => {
+        console.error('Erro na conexão com o servidor WebSocket:', error);
+    };
+
+    socket.onclose = () => {
+        console.log('Conexão com o servidor WebSocket fechada');
+    };
+
+    editor.addEventListener('input', () => {
+        const content = editor.innerHTML;
+        socket.send(content);
     });
+
 
 
     // O QUE PRECISARIA SER FEITO NESSE CASO SERIA O BACKEND ARMAZENAR A VERSÃO ATUALIZADA DO TEXTO NO LOCALSTORAGE E O FRONTEND MANDAR A VERSÃO ATUAL PARA O BACKEND FAZER UM MERGE
