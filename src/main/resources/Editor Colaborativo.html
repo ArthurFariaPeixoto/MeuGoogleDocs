@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editor Colaborativo</title>
+</head>
+<body>
+<textarea id="editor" rows="10" cols="50"></textarea>
+
+<script>
+  // cria conexão websocket
+  function connectWebSocket() {
+    const socket = new WebSocket("ws://localhost:8080/document");
+
+    socket.onopen = (event) => {
+      // lida com a conexão estabelecida
+      console.log("Conexão estabelecida com o servidor WebSocket.");
+    };
+
+    socket.onmessage = (event) => {
+      const documentContent = event.data; // pega o documento atualizado do servidor
+      document.getElementById("editor").value = documentContent;
+    };
+
+    document.getElementById("editor").addEventListener("input", (event) => {
+      const editedText = event.target.value;
+      const cursorPosition = event.target.selectionStart; // Posição do cursor no texto
+      const message = cursorPosition + ";" + editedText;
+      socket.send(message); // manda a posição e texto editado para o servidor
+    });
+  }
+
+  // conecta ao WebSocket quando o DOM estiver pronto
+  document.addEventListener("DOMContentLoaded", connectWebSocket);
+</script>
+</body>
+</html>
